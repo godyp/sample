@@ -18,6 +18,7 @@ class App extends Component {
     }
     this.changeText = this.changeText.bind(this)
     this.submitTask = this.submitTask.bind(this)
+    this.fetchTasks = this.fetchTasks.bind(this)
   }
 
   componentWillMount(){
@@ -39,7 +40,15 @@ class App extends Component {
   }
 
   submitTask() {
-    console.log( this.state.inputText );
+    fetch("http://localhost:3001/tasks", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ body: this.state.inputText })
+    })
+    .then( this.fetchTasks )
   }
 
   render() {
