@@ -16,6 +16,8 @@ class App extends Component {
         }
       ]
     }
+    this.changeText = this.changeText.bind(this)
+    this.submitTask = this.submitTask.bind(this)
   }
 
   componentWillMount(){
@@ -30,6 +32,16 @@ class App extends Component {
     })
   }
 
+  changeText(e) {
+    const inputText = e.target.value
+    this.setState({ inputText: inputText })
+    console.dir(inputText);
+  }
+
+  submitTask() {
+    console.log( this.state.inputText );
+  }
+
   render() {
     return (
       <div className="App">
@@ -39,6 +51,10 @@ class App extends Component {
               return <div className="task" key={ task.id }>{ task.body }</div>
           })
         }
+        </div>
+        <div id="task-form">
+          <input type="text" id="task-input" onChange={ this.changeText }/>
+          <button id="submit" onClick={ this.submitTask }>submit</button>
         </div>
       </div>
     );
