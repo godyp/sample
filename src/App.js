@@ -18,6 +18,18 @@ class App extends Component {
     }
   }
 
+  componentWillMount(){
+    this.fetchTasks()
+  }
+
+  fetchTasks(){
+    fetch("http://localhost:3001/tasks") // データを取得しに行く
+    .then( response => response.json() ) // json型のレスポンスをオブジェクトに変換する
+    .then( json => { // オブジェクトに変換したレスポンスを受け取り、
+      this.setState({ tasks: json }) // Stateを更新する
+    })
+  }
+
   render() {
     return (
       <div className="App">
