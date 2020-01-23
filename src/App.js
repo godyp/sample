@@ -39,6 +39,8 @@ class App extends Component {
     console.dir(inputText);
   }
 
+  
+
   submitTask() {
     fetch("http://localhost:3001/tasks", {
       method: "POST",
@@ -46,7 +48,13 @@ class App extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ body: this.state.inputText })
+      body: JSON.stringify({
+        from: "たかし",
+        to: "珠子",
+        body: this.state.inputText,
+        craped: 0,
+        date: "2020/01/23 13:53"
+       })
     })
     .then( this.fetchTasks )
   }
